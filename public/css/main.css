@@ -1,69 +1,28 @@
-/* Global */
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif
 }
 
-
-/* Header */
-
-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 50px;
-    box-shadow: 0 1px 8px #ddd;
+.w3-row-padding img {
+    margin-bottom: 12px
 }
 
-#nav-title {
-    margin-right: auto;
-    font-size: 1.5em;
+.w3-sidebar {
+    width: 120px;
+    background: #222;
 }
 
-header li {
-    list-style: none;
-    display: inline-block;
-    padding: 0 20px;
+#main {
+    margin-left: 120px
 }
 
-header a {
-    text-decoration: none;
-    color: #555;
-    transition: all 0.3s ease 0s;
-}
-
-header a:hover {
-    color: #04AA6D;
-}
-
-#tenis {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-    margin: auto;
-    margin-top: 40px;
-}
-
-#tenis td,
-#tenis th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#tenis tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#tenis tr:hover {
-    background-color: #ddd;
-}
-
-#tenis th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
+@media only screen and (max-width: 600px) {
+    #main {
+        margin-left: 0
+    }
 }
