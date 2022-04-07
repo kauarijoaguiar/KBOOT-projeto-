@@ -4,6 +4,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/view');
 
+
+
+
 // PARSER DOS FORMULÁRIOS
 app.use(express.urlencoded({
     extended: true,
@@ -11,6 +14,9 @@ app.use(express.urlencoded({
 
 // PARSER DAS REQUISIÇOES COM JSON
 app.use(express.json());
+
+
+
 
 const session = require('express-session');
 const { post } = require('./routes/tenis-routes');
@@ -38,6 +44,18 @@ app.use('*', (req, res, next) => {
 })
 
 
+app.get('*', (req, res, next) => {
+    if (req.url != '/login.html' && req.url != '/entrar.html') {
+        if (!req.session.user) {
+            res.redirect('/login.html');
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+})
+
 app.get('/', (req, res) => {
     res.redirect('/login.html');
 });
@@ -47,6 +65,9 @@ app.use('/tenis', tenisRoutes);
 
 const usersRoutes = require('./routes/users-routes');
 app.use('/users', usersRoutes);
+
+
+
 
 app.use('*', (req, res) => {
     return res.status(404).send(`
