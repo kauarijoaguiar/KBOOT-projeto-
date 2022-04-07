@@ -13,6 +13,7 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 const session = require('express-session');
+const { post } = require('./routes/tenis-routes');
 app.use(session({
     secret: 'chave secreta de criptografia',
     resave: false, // NAO SOBRESCREVER CASO NAO HAJA MODIFICAÇÕES,
@@ -54,4 +55,5 @@ app.use('*', (req, res) => {
     `);
 })
 
-app.listen(3000, () => console.log('Server iniciado na porta 3000'));
+const porta = process.env.PORT;
+app.listen(porta, () => console.log(`Server iniciado na porta` + porta));
