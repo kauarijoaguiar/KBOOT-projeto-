@@ -11,58 +11,74 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/main.css">
     </head>
+    <script>
+        function handleInput(e) {
+            var ss = e.target.selectionStart;
+            var se = e.target.selectionEnd;
+            e.target.value = e.target.value.toUpperCase();
+            e.target.selectionStart = ss;
+            e.target.selectionEnd = se;
+        }
+    </script>
     <%- include('includes/head') %>
 
         <body>
 
             <%- include('includes/navbar', {user: user}) %>
                 <div class="w3-padding-large" id="main">
-                    <!-- Header/Home -->
+
                     <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+                        <!--  <img class="w3-image" src="/w3images/hamburger.jpg" alt="Hamburger Catering" width="1600" height="800">
+      <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+       
+      </div> -->
+                        <img src="../../kboot.jpg" width="1100" height="500">
                         <h1 class="w3-jumbo"><span class="w3-hide-small"></span>
                             <% if (user) { %>
                                 <h1>Seja bem vindo/a
+                                    <br>
                                     <%= user.nome %>
-                                        a KBOOT
+                                        <br> a KBOOT
                                 </h1>
 
                                 <% } %>
 
                         </h1>
-                        <h1>Lista de todos os Tênis</h1>
-
-                        <select id="filtro" name="filtro">
-                        <option value="nome" <%=filtro.filtro == 'nome' ? " selected " : ""%>>Nome</option>
-                        <option value="lancamento" <%=filtro.filtro == 'lancamento' ? " selected " : ""%>>Data de Lançamento</option>
-                    </select>
-                        <input type="<%=filtro.filtro == 'lancamento' ? 'date' : 'text' %>" id="valor" name="valor" value="<%=filtro.valor%>" size="156">
-                        <button onclick="value = document.getElementById('valor').value.trim().replace(/ +/g, '+');filtro = value != '' ? document.getElementById('filtro').value+'='+value : '';location.href ='/tenis'+((filtro != '') ? '?' : '')+filtro;"><i class="fa fa-search"></i></button>
-
-                        <table id="tenis" class="w3-table w3-black">
-                            <tr class="w3-light-grey">
-
-                                <th>Nome</th>
-                                <th>Data de Lançamento</th>
-                                <th>Valor</th>
-                                <th></th>
-                            </tr>
-                            <% tenis.forEach(tenis => { %>
-                                <tr>
-                                    <td>
-                                        <%= tenis.nome %>
-                                    </td>
-                                    <td>
-                                        <%= tenis.lancamento %>
-                                    </td>
-                                    <td>
-                                        <%= tenis.valor %>
-                                    </td>
-                                    <td> <a href="/tenis/<%= tenis.id %>" class="w3-button w3-light-grey"> Ver detalhes </a> </td>
-                                    <!-- <td> <a href="/tenis/carrinho/<%= tenis.id %>"> Add carrinho </a> </td> -->
-                                </tr>
-                                <% }) %>
-                        </table>
                     </header>
+                    <h1>Lista de todos os Tênis</h1>
+
+                    <select id="filtro" name="filtro">
+                                <option value="nome" <%=filtro.filtro == 'nome' ? " selected " : ""%>>Nome</option>
+                                <option value="lancamento" <%=filtro.filtro == 'lancamento' ? " selected " : ""%>>Data de Lançamento</option>
+                    </select>
+                    <input oninput="handleInput(event)" type="<%=filtro.filtro == 'lancamento' ? 'date' : 'text' %>" id="valor" name="valor" value="<%=filtro.valor%>" size="156">
+                    <button onclick="value = document.getElementById('valor').value.trim().replace(/ +/g, '+');filtro = value != '' ? document.getElementById('filtro').value+'='+value : '';location.href ='/tenis'+((filtro != '') ? '?' : '')+filtro;"><i class="fa fa-search"></i></button>
+
+                    <table id="tenis" class="w3-table w3-black">
+                        <tr class="w3-light-grey">
+
+                            <th>Nome</th>
+                            <th>Data de Lançamento</th>
+                            <th>Valor</th>
+                            <th></th>
+                        </tr>
+                        <% tenis.forEach(tenis => { %>
+                            <tr>
+                                <td>
+                                    <%= tenis.nome %>
+                                </td>
+                                <td>
+                                    <%= tenis.lancamento %>
+                                </td>
+                                <td>
+                                    R$
+                                    <%= tenis.valor %>
+                                </td>
+                                <td> <a href="/tenis/<%= tenis.id %>" class="w3-button w3-light-grey"> Ver detalhes </a> </td>
+                                <!-- <td> <a href="/tenis/carrinho/<%= tenis.id %>"> Add carrinho </a> </td> -->
+                            </tr>
+                            <% }) %>
+                    </table>
 
 
 
