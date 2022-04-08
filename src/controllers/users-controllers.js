@@ -11,7 +11,7 @@ class UsersController {
 
         const { email, senha } = req.body;
         const usuarioEcontrado = users.find(u => u.email == email);
-        if (!usuarioEcontrado) return res.send('User nao encontrado');
+        if (!usuarioEcontrado) return res.redirect('/login.html');
         if (usuarioEcontrado.senha == senha) {
             req.session.user = usuarioEcontrado;
             if (usuarioEcontrado.senha == senha) {

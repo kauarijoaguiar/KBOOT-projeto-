@@ -66,9 +66,6 @@ class TenisController {
         });
         return res.redirect('/tenis');
     };
-    async carrinho(req, res) {
-        //res.send('aqui vamos add no carrinho');
-    };
 }
 
 module.exports = { TenisController }

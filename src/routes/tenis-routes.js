@@ -15,8 +15,6 @@ routes.get('/alterar/:id', tenisController.mostraAltera);
 
 routes.post('/alterar/:id', tenisController.alterar);
 
-routes.get('/carrinho/:id', tenisController.carrinho);
-
 routes.get('/', tenisController.listar);
 
 routes.get('/:id', tenisController.detalhar);
